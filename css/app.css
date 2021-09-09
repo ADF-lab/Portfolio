@@ -31,6 +31,10 @@ body{
 	font-family: chapaza;
 	src: url(../font/Chapaza.ttf);
 }
+@font-face{
+	font-family: montt;
+	src:  url(../font/Montserrat-Thin.ttf);
+}
 
 header{
 	height: 100px;
@@ -137,6 +141,10 @@ footer > div > div:nth-of-type(1){
 
 main{
 	margin-left: 150px;
+	display: flex;
+	flex: none;
+	flex-direction: column;
+	scroll-snap-type: y mandatory;
 }
 .firsthome{
 	height: 100vh;
@@ -166,7 +174,7 @@ main{
 	text-align: center;
 	font-size: 116px;
 }
-#firsthome >div:nth-of-type(2){
+.firsthome > div:nth-of-type(2){
 	font-family: 'montli';
 	font-size: 24px;
 }
@@ -178,4 +186,84 @@ main{
 	text-align: right;
 	font-family: montli;
 	font-size: 16px;
+}
+
+.second-section-home{
+	padding: 0 0 0 42px;
+	position: relative;
+	overflow: hidden;
+}
+.text-bg{
+	position: absolute;
+	top: 32px;
+	font-family: montb;
+	font-size: 274px;
+	color: white;
+	text-shadow: 0 3px 52px rgba(0,0,0, 0.02);
+	z-index: -1;
+}
+.text-bg > span{
+	font-family: montt;
+}
+.container-content{
+	z-index: 10;
+	width: 100%;
+	padding-top: 194px;
+	display: flex;
+	overflow-x: scroll;
+	padding-bottom: 150px;
+}
+.container-content > div {
+	/* From https://css.glass */
+	background: rgba(255, 255, 255, 0.18);
+	border-radius: 16px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(2px);
+	-webkit-backdrop-filter: blur(4px);
+	border: 1px solid rgba(249, 251, 252, 0.5);
+	width: 472px;
+	height: 310px;
+	transition-duration: 150ms;
+	flex-shrink: 0;
+}
+.container-content > div:nth-of-type(1){
+	margin-right: 80px;
+	margin-left: 115px;
+}
+.container-content > div:nth-of-type(2){
+	margin-right: 80px;
+}
+.container-content > div:hover{
+	backdrop-filter: blur(0px);
+	background: rgba(255, 255, 255);
+}
+.container-content::-webkit-scrollbar {
+  display: none;
+}
+
+.project-title{
+	padding-top: 100px;
+	display: flex;
+	justify-content: center;
+	position: relative;
+}
+.project-title > div:nth-of-type(1){
+	font-family: 'montb';
+	font-size: 38px;
+	color: #ECEEF0;
+}
+.project-title > div:nth-of-type(2){
+	font-family: 'chapaza';
+	font-size: 32px;
+	position: absolute;
+	bottom: -10px;
+	color: #56A7A7;
+}
+.project-description{
+	padding: 0 50px;
+	margin-top: 30px;
+	text-align: center;
+	font-family: mont;
+	font-size: 16px;
+	color: #A0DBDB;
 }

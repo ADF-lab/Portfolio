@@ -108,11 +108,43 @@ var firstsectionhome = {
 				hallo
 			</div>
 		</div>
-		<div>good morning.</div>
+		<div id="greeting">good morning.</div>
 
 		<div class="description">
 			<span>hello there, im Aditya Dwi from Bandung city in Indonesia. I'm freshgraduate from SMKN 1 Cimahi and i'm interested in web development especially in Front-End Developer</span>
 		</div>
 	</div>
 	`
+}
+var project = {
+	props:['data'],
+	template: `
+	<div>
+		<div class="project-title">
+			<div>{{data.title}}</div>
+			<div>{{data.title}}</div>
+		</div>
+
+		<div class="project-description">
+			{{data.description}}
+		</div>
+	</div>
+	`,
+}
+var secondsectionhome = {
+	props:['data'],
+	template:`
+	<div  class="second-section-home">
+		<div class="container-content">
+			<project-section v-for="data in data" :data="data" ></project-section>
+		</div>
+
+		<div class="text-bg">
+			<span>pro</span>ject
+		</div>
+	</div>
+	`,
+	components:{
+		'project-section' : project,
+	}
 }
