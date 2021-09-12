@@ -60,8 +60,7 @@ var header = {
 		</div>
 
 		<div class="link">
-			<router-link to="/">home</router-link>
-			<router-link to="/admin">admin</router-link>
+			<a href="">home</a>
 			<a href="">project</a>
 			<a href="">about</a>
 		</div>
@@ -98,155 +97,14 @@ var sidebarComponent = {
 	</div>`
 }
 
-
-
-var firstsectionhome = {
-	template : `
-	<div class="firsthome">
-		<div class="greet">
-			<div>
-				HELLO
-			</div>
-			<div>
-				hello
-			</div>
-		</div>
-		<div id="greeting">good morning.</div>
-
-		<div class="description">
-			<span>hello there, im Aditya Dwi from Bandung city in Indonesia. I'm freshgraduate from SMKN 1 Cimahi and i'm interested in web development especially in Front-End Developer</span>
-		</div>
-	</div>
-	`,
-}
-var project = {
-	props:['data'],
-	template: `
-	<div>
-		<div class="project-title">
-			<div>{{data.title.charAt(0).toUpperCase() + data.title.slice(1)}}</div>
-			<div>{{data.title}}</div>
-		</div>
-
-		<div class="project-description">
-			{{data.description}}
-		</div>
-	</div>
-	`,
-}
-var secondsectionhome = {
-	props:['data'],
-	template:`
-	<div  class="second-section-home">
-		<div class="container-content">
-			<project-section v-for="data in data" :data="data" :key="data.key"></project-section>
-		</div>
-
-		<div class="text-bg">
-			<span>pro</span>ject
-		</div>
-	</div>
-	`,
-	components:{
-		'project-section' : project,
-	}
-}
-
-
-
 var homeSection = {
-	props:[
-		'project'
-	],
 	template: `
 	<div>
 		<first-section-home></first-section-home>
-		<second-section-home :data="project"></second-section-home>
-		<div>{{stop}}</div>
+		<second-section-home :data="data"></second-section-home>
 	</div>
 	`,
 	components: {
-		'first-section-home' : firstsectionhome,
-		'second-section-home' : secondsectionhome,
-	},
-	data: function(){
-		return{
-			stop: 'false',
 
-		}
-	},
-	methods:{
-		changeText: function(){
-			var text = ["good afternoon.", "good evening.", "good morning."];
-			var counter = 0;
-			var inst = setInterval(change, 1000);
-			var inside = this.stop;
-
-			function change() {
-				var elem = document.getElementById("greeting");
-			  elem.innerHTML = text[counter];
-			  counter++;
-			  if (counter >= text.length) {
-			    counter = 0;
-			  }
-			    if (inside == true) {
-			    	clearInterval(inst); // uncomment this if you want to stop refreshing after one cycle
-			    	console.log('inside')
-			    }
-			}
-		}
-	},
-	created: function(){
-		this.stop = false
-		this.changeText()
-		console.log(this.stop)
-	},
-	updated: function(){
-		this.changeText()
-	},
-	destroyed: function(){
-		this.stop = true
-		console.log(this.stop)
 	}
-}
-
-var adminSection = {
-	template: `
-	<div>
-		<div class="header">
-			Hello There!!
-		</div>
-
-		<div class="input-container">
-			<div>
-				<div>Isi namanya disini</div>
-				<input type="text">
-			</div>
-			<div>
-				<div>Deskripsinya singkat</div>
-				<textarea></textarea>
-			</div>
-			<div>
-				<div>bagian apa?</div>
-				<input type="text">
-			</div>
-			<div>
-				<div>Penjelasannya bray</div>
-				<textarea></textarea>
-			</div>
-			<div>
-				<div>stack</div>
-				<input type="text">
-			</div>
-			<div>
-				<div>Kapan dah?</div>
-				<input type="text">
-			</div>
-			<div>
-				<div>ada linknya?</div>
-				<input type="text">
-			</div>
-		</div>
-	</div>
-	`
 }
