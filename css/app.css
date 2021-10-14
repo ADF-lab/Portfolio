@@ -233,13 +233,24 @@ main{
 }
 .container-content{
 	z-index: 10;
+	cursor: grab;
 	width: 100%;
 	padding-top: 194px;
 	display: flex;
 	overflow-x: scroll;
 	padding-bottom: 150px;
 }
-.container-content > div {
+.container-content > a{
+	text-decoration: none;
+}
+.container-content > a:nth-of-type(1){
+	margin-right: 80px;
+	margin-left: 115px;
+}
+.container-content > a:nth-of-type(2){
+	margin-right: 80px;
+}
+.project-container{
 	/* From https://css.glass */
 	background: rgba(255, 255, 255, 0.18);
 	border-radius: 16px;
@@ -252,14 +263,7 @@ main{
 	transition-duration: 150ms;
 	flex-shrink: 0;
 }
-.container-content > div:nth-of-type(1){
-	margin-right: 80px;
-	margin-left: 115px;
-}
-.container-content > div:nth-of-type(2){
-	margin-right: 80px;
-}
-.container-content > div:hover{
+.project-container:hover{
 	backdrop-filter: blur(0px);
 	background: rgba(255, 255, 255);
 }
@@ -272,8 +276,6 @@ main{
 	display: flex;
 	justify-content: center;
 	position: relative;
-}
-.project-title > div:nth-of-type(1){
 	font-family: 'montb';
 	user-select: none;
 	font-size: 38px;
@@ -300,18 +302,14 @@ main{
 .header{
 	width: 100%;
 	text-align: center;
-	padding-top: 100px;
+	padding-top: 64px;
 	font-family: montb;
 	color: var(--ijo);
 	font-size: 32px;
 }
-.input-container{
-	font-family: mont;
-	padding: 42px 0 0 ;
-}
-.input-container > div > input {
-	border-color: var(--ijo);
-	border-width: 1px;
-	background-color: transparent;
-	border-style: solid;
+
+.dtproject{
+	margin: 0 12rem 0 4rem;
+	height: 2rem;
+	background: rgb(106, 158, 9);
 }

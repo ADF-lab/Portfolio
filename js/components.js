@@ -1,7 +1,7 @@
-var header = {
+let header = {
 	template: `
 	<header>
-		<div class="navicon">
+		<router-link class="navicon" to="/">
 			<div>
 				<svg class="full rotate" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 						<path d="M249.921,39.905c-5.573,0-10.091,4.519-10.091,10.091v0.037c0,5.574,4.518,10.073,10.091,10.073
@@ -57,18 +57,15 @@ var header = {
 							h0.001C481.221,382.166,456.938,406.453,427.081,406.453z"/>
 				</svg>
 			</div>
-		</div>
+		</router-link>
 
 		<div class="link">
-			<router-link to="/">home</router-link>
-			<router-link to="/admin">admin</router-link>
-			<a href="">project</a>
-			<a href="">about</a>
+			<!-- <router-link to="/about">me?</router-link> -->
 		</div>
 	</header>`
 }
 
-var footer = {
+let footer = {
 	template:`
 	<footer>
 		<div>
@@ -89,7 +86,7 @@ var footer = {
 	</footer>`
 }
 
-var sidebarComponent = {
+let sidebarComponent = {
 	template : `
 	<div class="sidebar">
 		<a>
@@ -100,7 +97,7 @@ var sidebarComponent = {
 
 
 
-var firstsectionhome = {
+let firstsectionhome = {
 	template : `
 	<div class="firsthome">
 		<div class="greet">
@@ -119,27 +116,29 @@ var firstsectionhome = {
 	</div>
 	`,
 }
-var project = {
-	props:['data'],
+let project = {
+	props:['dataproject'],
 	template: `
-	<div>
-		<div class="project-title">
-			<div>{{data.title.charAt(0).toUpperCase() + data.title.slice(1)}}</div>
-			<div>{{data.title}}</div>
-		</div>
+	<a :href=dataproject.url>
+		<div class="project-container">
+			<div class="project-title">
+				<div>{{dataproject.title.charAt(0).toUpperCase() + dataproject.title.slice(1)}}</div>
+				<div>{{dataproject.title}}</div>
+			</div>
 
-		<div class="project-description">
-			{{data.description}}
+			<div class="project-description">
+				{{dataproject.description}}
+			</div>
 		</div>
-	</div>
+	</a>
 	`,
 }
-var secondsectionhome = {
+let secondsectionhome = {
 	props:['data'],
 	template:`
 	<div  class="second-section-home">
-		<div class="container-content">
-			<project-section v-for="data in data" :data="data" :key="data.key"></project-section>
+		<div class="container-content" id="container">
+			<project-section v-for="datahome in data" :dataproject="datahome" :key="datahome.id"></project-section>
 		</div>
 
 		<div class="text-bg">
@@ -149,12 +148,11 @@ var secondsectionhome = {
 	`,
 	components:{
 		'project-section' : project,
-	}
+	},
 }
 
 
-
-var homeSection = {
+let homeSection = {
 	props:[
 		'project'
 	],
@@ -162,7 +160,6 @@ var homeSection = {
 	<div>
 		<first-section-home></first-section-home>
 		<second-section-home :data="project"></second-section-home>
-		<div>{{stop}}</div>
 	</div>
 	`,
 	components: {
@@ -171,82 +168,55 @@ var homeSection = {
 	},
 	data: function(){
 		return{
-			stop: 'false',
-
+			inst:"",
 		}
 	},
 	methods:{
 		changeText: function(){
-			var text = ["good afternoon.", "good evening.", "good morning."];
-			var counter = 0;
-			var inst = setInterval(change, 1000);
-			var inside = this.stop;
+			let text = ["good afternoon.", "good evening.", "good morning."];
+			let counter = 0;
+			this.inst = setInterval(change, 1000);
 
 			function change() {
-				var elem = document.getElementById("greeting");
-			  elem.innerHTML = text[counter];
-			  counter++;
-			  if (counter >= text.length) {
-			    counter = 0;
-			  }
-			    if (inside == true) {
-			    	clearInterval(inst); // uncomment this if you want to stop refreshing after one cycle
-			    	console.log('inside')
-			    }
+				let elem = document.getElementById("greeting");
+				elem.innerHTML = text[counter];
+				counter++;
+				if (counter >= text.length) {
+					counter = 0;
+				}
 			}
 		}
 	},
 	created: function(){
-		this.stop = false
 		this.changeText()
-		console.log(this.stop)
 	},
 	updated: function(){
 		this.changeText()
 	},
 	destroyed: function(){
-		this.stop = true
-		console.log(this.stop)
+		clearInterval(this.inst)
 	}
 }
 
-var adminSection = {
+let detailProject = {
 	template: `
-	<div>
-		<div class="header">
-			Hello There!!
-		</div>
-
-		<div class="input-container">
-			<div>
-				<div>Isi namanya disini</div>
-				<input type="text">
-			</div>
-			<div>
-				<div>Deskripsinya singkat</div>
-				<textarea></textarea>
-			</div>
-			<div>
-				<div>bagian apa?</div>
-				<input type="text">
-			</div>
-			<div>
-				<div>Penjelasannya bray</div>
-				<textarea></textarea>
-			</div>
-			<div>
-				<div>stack</div>
-				<input type="text">
-			</div>
-			<div>
-				<div>Kapan dah?</div>
-				<input type="text">
-			</div>
-			<div>
-				<div>ada linknya?</div>
-				<input type="text">
+		<div class="dtproject">
+			<div class="atas">
+				<div class="kiri">
+					{{$route.params}}
+				</div>
+				<div class="kanan">
+				</div>
 			</div>
 		</div>
-	</div>
-	`
+	`,
+	data: () => {
+		return{
+			project:"",
+		}
+	},
+	mounted:() =>{
+		console.log(this.$route)
+		// this.project=this.$route.params.id
+	}
 }
