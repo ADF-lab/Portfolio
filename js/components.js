@@ -1,7 +1,7 @@
-let header = {
+export let header = {
 	template: `
 	<header>
-		<router-link class="navicon" to="/">
+		<div class="navicon">
 			<div>
 				<svg class="full rotate" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 						<path d="M249.921,39.905c-5.573,0-10.091,4.519-10.091,10.091v0.037c0,5.574,4.518,10.073,10.091,10.073
@@ -57,15 +57,11 @@ let header = {
 							h0.001C481.221,382.166,456.938,406.453,427.081,406.453z"/>
 				</svg>
 			</div>
-		</router-link>
-
-		<div class="link">
-			<!-- <router-link to="/about">me?</router-link> -->
 		</div>
 	</header>`
 }
 
-let footer = {
+export let footer = {
 	template:`
 	<footer>
 		<div>
@@ -86,7 +82,7 @@ let footer = {
 	</footer>`
 }
 
-let sidebarComponent = {
+export let sidebarComponent = {
 	template : `
 	<div class="sidebar">
 		<a>
@@ -97,7 +93,7 @@ let sidebarComponent = {
 
 
 
-let firstsectionhome = {
+export let firstsectionhome = {
 	template : `
 	<div class="firsthome">
 		<div class="greet">
@@ -116,14 +112,14 @@ let firstsectionhome = {
 	</div>
 	`,
 }
-let project = {
+export let project = {
 	props:['dataproject'],
 	template: `
 	<a :href=dataproject.url>
 		<div class="project-container">
 			<div class="project-title">
 				<div>{{dataproject.title.charAt(0).toUpperCase() + dataproject.title.slice(1)}}</div>
-				<div>{{dataproject.title}}</div>
+				<div>{{dataproject.title.toLowerCase()}}</div>
 			</div>
 
 			<div class="project-description">
@@ -133,7 +129,7 @@ let project = {
 	</a>
 	`,
 }
-let secondsectionhome = {
+export let secondsectionhome = {
 	props:['data'],
 	template:`
 	<div  class="second-section-home">
@@ -152,7 +148,7 @@ let secondsectionhome = {
 }
 
 
-let homeSection = {
+export let homeSection = {
 	props:[
 		'project'
 	],
@@ -198,7 +194,7 @@ let homeSection = {
 	}
 }
 
-let detailProject = {
+export let detailProject = {
 	template: `
 		<div class="dtproject">
 			<div class="atas">
